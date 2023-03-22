@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}{{block.super}} | Payment {% endblock title %}
+{% block content %}
+  <h1>Payment Information</h1>
+  <form action="process-payment.php" method="POST">
+    <label for="card-number">Card Number:</label>
+    <input type="text" id="card-number" name="card-number" required>
+    <br>
+    <label for="card-name">Cardholder Name:</label>
+    <input type="text" id="card-name" name="card-name" required>
+    <br>
+    <label for="expiry-date">Expiry Date:</label>
+    <input type="month" id="expiry-date" name="expiry-date" required>
+    <br>
+    <label for="cvv">CVV:</label>
+    <input type="password" id="cvv" name="cvv" required>
+    <br>
+    <label for="billing-address">Billing Address:</label>
+    <textarea id="billing-address" name="billing-address"></textarea>
+    <br>
+    <h2>Select Payment Method</h2>
+    <input type="radio" id="card" name="payment-method" value="card" checked>
+    <label for="card">Credit/Debit Card</label>
+    <br>
+    <input type="radio" id="upi" name="payment-method" value="upi">
+    <label for="upi">UPI</label>
+    <br>
+    <input type="radio" id="netbanking" name="payment-method" value="netbanking">
+    <label for="netbanking">Netbanking</label>
+    <br>
+    <input type="radio" id="cod" name="payment-method" value="cod">
+    <label for="cod">Cash on Delivery</label>
+    <br>
+    <input type="submit" value="Pay Now">
+  </form>
+{% endblock %}

@@ -1,0 +1,114 @@
+Project Name: karma1
+project app: mainapp
+User name: ecommerce
+password: eshop123
+Seller
+User name: vinay
+password: Vinay@1234
+Buyer
+User name: Alex
+password: Alex@1234
+
+Error generate
+no such table mainapp.maincategory
+    python manage.py makemigrations mainapp
+
+ValueError at /shop/MC/Sports/BR/
+Field 'bid' expected a number but got 'BR'.
+
+If you r missing in html "/add/"---->"add/"
+Page not found (404)
+
+DoesNotExist at /profile/
+User matching query does not exist.
+sol: uname=s.username = request.POST.get("username")
+
+username save in both area such as admin(mainapp and Authentication & Authorization)
+unme: for User
+s.username: Seller (mainapp)
+
+
+DoesNotExist at /profile/
+Seller matching query does not exist.
+e=auth.login(request, user)
+
+seller must be authorized for resourse
+
+AnonymousUser
+If url don't match 
+The current path, sellerprofile/addproduct/, didn’t match any of these.
+
+ValueError at /addproduct/
+The view mainapp.views.addProduct didn't return an HttpResponse object. 
+ returned None instead.
+
+
+ ValueError at /
+The 'pic1' attribute has no file associated with it. (database input or html input filed page)
+
+IntegrityError at addProduct
+Not Null constraint failed : mainapp_product.mainCat.instead
+sol: In views.py file, you have variable name are different from attribute
+of Class className in models.py  
+
+MultipleObjectsReturned at /profile/
+get() returned more than one Product -- it returned 3!
+sol: you have more than pic in database and reterived some pic in  your html
+
+AttributeError at /editProduct/7/
+"WSGIRequest object has  no attribute FIELs--->FILES"
+Sol: go on views.py file and improve attribute FILEs in def editProduct
+
+FieldError at /editproduct/10/
+Cannot resolve keyword 'id' into field. Choices are: baseprice, brand, brand_id, 
+color, desc, discount, finalprice, mainCat, mainCat_id, name, 
+number, pic1, pic2, pic3, pic4, pic5, pid, seller, seller_id, 
+specification, stock, subCat, subCat_id
+
+sol: in views.py file improve id where you are passing in def editproduct 
+
+OperationalError at /admin/mainapp/buyer/
+no such table: mainapp_buyer
+
+sol: Table class Buyer is missing in database
+execute makemigrations and migrate cmd
+
+
+operationalError at /admin/mainapp/employee/add/
+table mainapp_employee has no column named city:
+
+Sol: may be possible in makemigrations file or 
+sqlite3.db file.
+
+TypeError at /admin/mainapp/seller/
+can only concatenate str (not "NoneType") to str
+
+
+TypeError at /wishlist/2/
+'WishList' object is not iterable
+
+Sol: user can select one item at a time
+
+
+AttributeError at /checkout/
+'NoneType' object has no attribute 'keys'
+
+OperationalError at /admin/
+no such table: django_session
+
+Sol: you don't have any table or not superuser 
+
+TemplateSyntaxError at /
+''static'' is not a registered tag library. Must be one of:
+
+Sol: you have wtite {% load 'static' %}----> while {% load static %}
+
+
+ConnectionError at /
+('Connection aborted.', RemoteDisconnected('Remote end 
+closed connection without response'))
+
+sol: server is closed
+
+
+https://razorpay.com/docs/payments/server-integration/python/payment-gateway/build-integration/

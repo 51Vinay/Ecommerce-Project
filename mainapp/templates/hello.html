@@ -1,0 +1,30 @@
+{% extends 'course/base.html' %}
+{% load static %}
+{% block title %}{{block.super}} | Change Password {% endblock title %}
+{% block content %}
+
+<h1><center>Change Password </center></h1>
+<form action="" method="POST" novalidate >
+{% csrf_token %}
+
+ <table>
+
+   
+{% for field in Change %}
+{{field.label_tag}}{{field}}{{field.errors|striptags}}</br></br>
+{% endfor %}
+</table>
+
+<input type="Submit" value="Save Password">
+</form>
+
+<a href="{% url 'profile' %}">Profile</a>
+
+{% endblock content %}
+
+
+
+
+
+
+
