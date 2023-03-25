@@ -1,5 +1,6 @@
 {% extends 'index.html' %}
 {% load static %}
+{% load custom_filters %}
 {% block title %}{{block.super}} | Cart {% endblock title %}
 
 {% block body %}
@@ -25,112 +26,55 @@
             <div class="cart_inner">
                 <div class="table-responsive">
                     <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Product</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for product in Product %}
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            {% if product.pic1.url %}
-                                            <img src="{{ product.pic1.url }}" style="width:100px;height:100px" alt="">
-                                            {%  else %}
-                                            <img src="{% static 'img/noimg/noimage.png' %}" style="width:100px;height:100px" alt="">
-                                            {% endif %}
-                                        </div>
-                                        <div class="media-body">
-                                            <p>{{product.name}}</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>Rs{{product.finalprice}}</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                            class="input-text qty">
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>Rs{{product.finalprice}}</h5>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                            
-                            <tr>
-                
-                                <td>
-                                    <h5>Subtotal</h5>
-                                </td>
-                                <td>
-                                    <h5>Rs:{{Total}}</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                
-                                <td>
-                                    <h5>Shipping</h5>
-                                </td>
-                                <td>
-                                    {% if Shipping %}
-                                    <h5>Rs: {{Shipping}}</h5>
-                                    {% else %}
-                                    <h5>Free</h5>
-                                    {% endif %}
-                                </td>
-                                <td>
-                                    <h5>Rs:{{Total}}</h5>
-                                </td>  
-                            </tr>
-                            <tr>
-                
-                                <td>
-                                    <h5>Final Amount</h5>
-                                </td>
-                                <td>
-                                    
-                                    <h5>Rs: {{Final}}</h5>
-                                    
-                                    
-                
-                                </td>
-                        
-                            </tr>
-                            
-                            <tr class="out_button_area">
-                                <td>
-
-                                </td>
-                                <td>
-
-                                </td>
-                                <td>
-
-                                </td>
-                                <td>
-                                    <div class="checkout_btn_inner d-flex align-items-center">
-                                        <a class="gray_btn" href="/shop/None/None/None/">Continue Shopping</a>
-                                        <a class="primary-btn" href="{% url 'checkout' %}">Proceed to checkout</a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--================End Cart Area =================-->
-{% endblock %}
+                      
+                            <thead>
+                              <thead>Billing{{product.name}}</thead>
+                              <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for item in products %}
+                              <tr>
+                                <td>{{ item.product.name }}</td>
+                                <td>Rs{{ item.product.finalprice }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>Rs{{ item.total }}</td>
+                              </tr>
+                              {% endfor %}
+                              <tr>
+                                <td colspan="3">Subtotal:</td>
+                                <td>Rs{{ subtotal }}</td>
+                              </tr>
+                              <tr>
+                                <td colspan="3">Shipping:</td>
+                                <td>Rs{{ shipping }}</td>
+                              </tr>
+                              <tr>
+                                <td colspan="3">Final Amount:</td>
+                                <td>Rs{{ total }}</td>
+                              </tr>
+                              <tr class="out_button_area">
+                                  <td>
+  
+                                  </td>
+                                  <td>
+  
+                                  </td>
+                                  <td>
+  
+                                  </td> 
+                              <td>
+                                <div class="checkout_btn_inner d-flex align-items-center">
+                                    <a class="gray_btn" href="/shop/None/None/None/">Continue Shopping</a>
+                                    <a class="primary-btn" href="{% url 'checkout' %}">Proceed to checkout</a>
+                                </div>
+                            </td>
+                          </tr>
+                            </tbody>
+                          </table>
+                          
+    {% endblock %}

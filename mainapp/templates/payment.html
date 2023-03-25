@@ -1,37 +1,129 @@
 {% extends 'index.html' %}
+
 {% load static %}
-{% block title %}{{block.super}} | Payment {% endblock title %}
-{% block content %}
-  <h1>Payment Information</h1>
-  <form action="process-payment.php" method="POST">
+
+{% block title %}{{ block.super }} | Payment {% endblock %}
+
+{% block body %}
+<section class="banner-area organic-breadcrumb">
+  <div class="container">
+    <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+      <div class="col-first">
+        <h1>Payment Page</h1>
+        <nav class="d-flex align-items-center">
+          <a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
+          <a href="/editbuyerprofile/">Payment Page<span class="lnr lnr-arrow-right"></span></a>
+                      <a href="/shop/">Shop </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<form action="process-payment.php" method="POST">
+      {% csrf_token %}
+<div class="container">
+<label><h2>Select Payment Method</h2></label><br>
+<input type="radio" name="payment-method" value="card" onclick="showCardDetails()">
+<label for="card">Credit/Debit Card</label>
+<br>
+<input type="radio" name="payment-method" value="upi" onclick="showUpiDetails()">
+<label for="card">UPI</label>
+<br>
+<input type="radio" name="payment-method" value="netbanking" onclick="showNetbankingDetails()">
+<label for="card">Netbanking</label>
+<br>
+<input type="radio" name="payment-method" value="cod" onclick="showCodDetails()">
+<label for="card">Cash on Delivery</label>
+<br>
+<div class="container" id="card-details" style="display:none;">
+  <h3>Enter Card Details</h3>
     <label for="card-number">Card Number:</label>
     <input type="text" id="card-number" name="card-number" required>
-    <br>
+    <br><br>
     <label for="card-name">Cardholder Name:</label>
     <input type="text" id="card-name" name="card-name" required>
-    <br>
+    <br><br>
     <label for="expiry-date">Expiry Date:</label>
     <input type="month" id="expiry-date" name="expiry-date" required>
-    <br>
+    <br><br>
     <label for="cvv">CVV:</label>
     <input type="password" id="cvv" name="cvv" required>
-    <br>
+    <br><br>
     <label for="billing-address">Billing Address:</label>
     <textarea id="billing-address" name="billing-address"></textarea>
-    <br>
-    <h2>Select Payment Method</h2>
-    <input type="radio" id="card" name="payment-method" value="card" checked>
-    <label for="card">Credit/Debit Card</label>
-    <br>
-    <input type="radio" id="upi" name="payment-method" value="upi">
-    <label for="upi">UPI</label>
-    <br>
-    <input type="radio" id="netbanking" name="payment-method" value="netbanking">
-    <label for="netbanking">Netbanking</label>
-    <br>
-    <input type="radio" id="cod" name="payment-method" value="cod">
-    <label for="cod">Cash on Delivery</label>
-    <br>
+    <br><br>
     <input type="submit" value="Pay Now">
-  </form>
+</div>
+
+<div id="upi-details" style="display:none;">
+  <h3>Enter UPI Details</h3>
+  <label for="upi-id">UPI ID:</label>
+  <input type="text" id="upi-id" name="upi-id" required>
+  <br><br>
+  <label for="upi-pin">UPI PIN:</label>
+  <input type="password" id="upi-pin" name="upi-pin" required>
+  <br><br>
+  <label for="billing-address">Billing Address:</label>
+  <textarea id="billing-address" name="billing-address"></textarea>
+  <br><br>
+  <input type="submit" value="Pay Now">
+</div>
+
+<div id="netbanking-details" style="display:none;">
+  <h3>Enter Netbanking Details</h3>
+  <label for="bank-name">Bank Name:</label>
+  <input type="text" id="bank-name" name="bank-name" required>
+  <br><br>
+  <label for="account-number">Account Number:</label>
+  <input type="text" id="account-number" name="account-number" required>
+  <br><br>
+  <label for="ifsc-code">IFSC Code:</label>
+  <input type="text" id="ifsc-code" name="ifsc-code" required>
+  <br><br>
+  <label for="billing-address">Billing Address:</label>
+  <textarea id="billing-address" name="billing-address"></textarea>
+  <br><br>
+  <input type="submit" value="Pay Now">
+</div>
+
+<div id="cod-details" style="display:none;">
+  <h3>Payment method Cash On Delivery</h3>
+  <p><b>You will pay for the order upon delivery.</b></p>
+  <br>
+  <label for="billing-address">Billing Address:</label>
+    <textarea id="billing-address" name="billing-address"></textarea>
+    <br><br>
+    <input type="submit" value="Pay Now">
+</div>
+
+<script>
+function showCardDetails() {
+    document.getElementById("card-details").style.display = "block";
+    document.getElementById("upi-details").style.display = "none";
+    document.getElementById("netbanking-details").style.display = "none";
+    document.getElementById("cod-details").style.display = "none";
+}
+
+function showUpiDetails() {
+    document.getElementById("card-details").style.display = "none";
+    document.getElementById("upi-details").style.display = "block";
+    document.getElementById("netbanking-details").style.display = "none";
+    document.getElementById("cod-details").style.display = "none";
+}
+
+function showNetbankingDetails() {
+    document.getElementById("card-details").style.display = "none";
+    document.getElementById("upi-details").style.display = "none";
+    document.getElementById("netbanking-details").style.display = "block";
+    document.getElementById("cod-details").style.display = "none";
+}
+
+function showCodDetails() {
+    document.getElementById("card-details").style.display = "none";
+    document.getElementById("upi-details").style.display = "none";
+    document.getElementById("netbanking-details").style.display = "none";
+    document.getElementById("cod-details").style.display = "block";
+}
+</script>
 {% endblock %}

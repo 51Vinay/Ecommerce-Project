@@ -16,32 +16,33 @@ def index(request):
     data = Product.objects.all()
     return render(request, 'index.html', {'Data': data})
 
-def cartPage(request):
-    cart=request.session.get("cart",None)
-    sum = 0
-    if(cart):
-        keys=cart.keys()
-        product=[]
-        for i in keys:
-            p = Product.objects.get(pid=i)
-            product.append(p)
-            sum += p.finalprice * cart[i]
-        if(sum<1000):
-            shipping=150
-            final=sum+shipping
-        else:
-            shipping=False
-            final=sum
-    else:
-        product=[]
-        sum=0
-        final=0
-        shipping=0
-    return render(request, 'cart.html',{"Product":product,
-                                        "Total":sum,
-                                        "Shipping":shipping,
-                                         "Final":final})
+def cart(request):
+    cart = request.session.get("cart", {})
+    subtotal = 0
+    products = []
 
+    for pid, quantity in cart.items():
+        try:
+            product = Product.objects.get(pid=pid)
+            products.append({
+                'product': product,
+                'quantity': quantity,
+                'total': product.finalprice * quantity,
+            })
+            subtotal += product.finalprice * quantity
+        except Product.DoesNotExist:
+            pass
+
+    shipping = 150 if subtotal < 1000 else 0
+    total = subtotal + shipping
+
+    return render(request, 'cart.html', {
+        'products': products,
+        'subtotal': subtotal,
+        'shipping': shipping,
+        'total': total,
+    })
+    
 def deleteCart(request):
     cart=request.session.get("cart",None)
     if(cart):
@@ -50,8 +51,8 @@ def deleteCart(request):
     return HttpResponseRedirect('/cart/')
 
 client=razorpay.Client(auth=(RAZORPAY_API_KEY,RAZORPAY_API_SECRET_KEY))
-@login_required(login_url='/login/')
 
+@login_required(login_url='/login/')
 def checkOutPage(request):
     buyer = Buyer.objects.get(username=request.user)
     cart = request.session.get("cart", {})
