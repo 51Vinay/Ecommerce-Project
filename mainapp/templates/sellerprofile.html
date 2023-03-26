@@ -1,6 +1,6 @@
 {% extends 'index.html' %} 
 {% load static %}
-{% block title %}{{block.super}} | Add Product {% endblock title %}
+{% block title %}{{block.super}} | Seller Profile {% endblock title %}
 {% block body %}
 <!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
@@ -10,7 +10,7 @@
 					<h1>Seller Profile</h1>
 					<nav class="d-flex align-items-center">
 						<a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="/editsellerprofile/">Update Profile</a>
+						<a href="/editsellerprofile/">Update Profile<span class="lnr lnr-arrow-right"></span></a>
                         <a href="{% url 'pass' %}">Forgot password</a>
 					</nav>
 				</div>

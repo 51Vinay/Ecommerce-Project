@@ -15,7 +15,7 @@
 						<a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
 						<a href="/editbuyerprofile/">Update Profile<span class="lnr lnr-arrow-right"></span></a>
                         <a href="{% url 'pass' %}">Forgot Password<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="/shop/">Shop </a>
+                        <a href="/shop/None/None/None">Shop </a>
 					</nav>
 				</div>
 			</div>
@@ -96,7 +96,7 @@
             </div>
         </div>
     </section>
-	<a style="display:block;width:100%;text-align:center;" class="primary-btn" href="/wishlist/">Wish List</a>
+	<a style="display:block;width:100%;text-align:center;" class="primary-btn" href="/wishlist/{{Product.pid}}/">Wish List</a>
 <!--================End Buyer Profile Area =================-->
     <!--================Start WishList Area =================-->
     <section class="cart_area">

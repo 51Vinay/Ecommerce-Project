@@ -12,8 +12,7 @@
         <h1>Payment Page</h1>
         <nav class="d-flex align-items-center">
           <a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
-          <a href="/editbuyerprofile/">Payment Page<span class="lnr lnr-arrow-right"></span></a>
-                      <a href="/shop/">Shop </a>
+          <a href="/shop/None/None/None">Shop </a>
         </nav>
       </div>
     </div>
@@ -53,48 +52,52 @@
     <label for="billing-address">Billing Address:</label>
     <textarea id="billing-address" name="billing-address"></textarea>
     <br><br>
-    <input type="submit" value="Pay Now">
+    <input class="primary-btn" type="submit" value="Pay Now">
+    <br><br>
 </div>
 
 <div id="upi-details" style="display:none;">
   <h3>Enter UPI Details</h3>
-  <label for="upi-id">UPI ID:</label>
-  <input type="text" id="upi-id" name="upi-id" required>
-  <br><br>
-  <label for="upi-pin">UPI PIN:</label>
-  <input type="password" id="upi-pin" name="upi-pin" required>
-  <br><br>
-  <label for="billing-address">Billing Address:</label>
-  <textarea id="billing-address" name="billing-address"></textarea>
-  <br><br>
-  <input type="submit" value="Pay Now">
+    <label for="upi-id">UPI ID:</label>
+    <input type="text" id="upi-id" name="upi-id" required>
+    <br><br>
+    <label for="upi-pin">UPI PIN:</label>
+    <input type="password" id="upi-pin" name="upi-pin" required>
+    <br><br>
+    <label for="billing-address">Billing Address:</label>
+    <textarea id="billing-address" name="billing-address"></textarea>
+    <br><br>
+    <input class="primary-btn" type="submit" value="Pay Now">
+    <br><br>
 </div>
 
 <div id="netbanking-details" style="display:none;">
   <h3>Enter Netbanking Details</h3>
-  <label for="bank-name">Bank Name:</label>
-  <input type="text" id="bank-name" name="bank-name" required>
-  <br><br>
-  <label for="account-number">Account Number:</label>
-  <input type="text" id="account-number" name="account-number" required>
-  <br><br>
-  <label for="ifsc-code">IFSC Code:</label>
-  <input type="text" id="ifsc-code" name="ifsc-code" required>
-  <br><br>
-  <label for="billing-address">Billing Address:</label>
-  <textarea id="billing-address" name="billing-address"></textarea>
-  <br><br>
-  <input type="submit" value="Pay Now">
+    <label for="bank-name">Bank Name:</label>
+    <input type="text" id="bank-name" name="bank-name" required>
+    <br><br>
+    <label for="account-number">Account Number:</label>
+    <input type="text" id="account-number" name="account-number" required>
+    <br><br>
+    <label for="ifsc-code">IFSC Code:</label>
+    <input type="text" id="ifsc-code" name="ifsc-code" required>
+    <br><br>
+    <label for="billing-address">Billing Address:</label>
+    <textarea id="billing-address" name="billing-address"></textarea>
+    <br><br>
+    <input class="primary-btn" type="submit" value="Pay Now">
+    <br><br>
 </div>
 
 <div id="cod-details" style="display:none;">
   <h3>Payment method Cash On Delivery</h3>
-  <p><b>You will pay for the order upon delivery.</b></p>
-  <br>
-  <label for="billing-address">Billing Address:</label>
+    <p><b>You will pay for the order upon delivery.</b></p>
+    <br><br>
+    <label for="billing-address">Billing Address:</label>
     <textarea id="billing-address" name="billing-address"></textarea>
     <br><br>
-    <input type="submit" value="Pay Now">
+    <input class="primary-btn" type="submit" value="Pay Now">
+    <br><br>
 </div>
 
 <script>
